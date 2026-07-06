@@ -57,7 +57,7 @@ Add `--md` for a ready-to-quote markdown block. Run `node scripts/decide.mjs --q
 
 ### Step 4: Write the decision record
 
-Use the format in `assets/decision-record-template.md`. Turn the engine output into a decision a team can act on and revisit:
+Use the format in `assets/decision-record-template.md`. A filled example, a real engagement run through this skill, is in `assets/example-decision-record.md`. Turn the engine output into a decision a team can act on and revisit:
 
 - State the verdict and the shape, with the diagram.
 - For each signal, show the evidence you read it from. A verdict with no citations is an opinion.

@@ -8,7 +8,7 @@ It is the executable version of the tool at [hamidettefagh.com/agent-architectur
 
 ## The two-gate method
 
-This is the **design-time gate**: what to build. Its sibling, [agent-production-readiness](https://github.com/hamidettefagh/agent-production-readiness), is the **ship-time gate**: whether it is ready. One decides the shape; the other decides if the shape is safe to run. Together they cover an agent from the whiteboard to the on-call rotation.
+This is the **design-time gate**: what to build. Its sibling, [agent-production-readiness](https://github.com/hamidettefagh/agent-production-readiness), is the **ship-time gate**: whether it is ready. One decides the shape; the other decides if the shape is safe to run. Together they cover an agent from the whiteboard to the on-call rotation. The write-up behind both gates is at [hamidettefagh.com/two-gates](https://hamidettefagh.com/two-gates).
 
 ## The verdict is deterministic
 
@@ -37,7 +37,7 @@ Or hand it a PRD, a ticket, or the existing code:
 
 > Read this spec and tell me the right architecture.
 
-The skill reads the design, extracts seven signals with evidence, runs the deterministic verdict, and writes an architecture decision record: the shape, a diagram, the knowledge, human-oversight, and model guidance, the top three risks, and the cheaper alternative it is not choosing.
+The skill reads the design, extracts seven signals with evidence, runs the deterministic verdict, and writes an architecture decision record: the shape, a diagram, the knowledge, human-oversight, and model guidance, the top three risks, and the cheaper alternative it is not choosing. See a filled example in [`assets/example-decision-record.md`](assets/example-decision-record.md), a real engagement run through the skill.
 
 You can also run the engine directly:
 
