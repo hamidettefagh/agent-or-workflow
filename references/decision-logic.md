@@ -4,6 +4,8 @@ This is what `scripts/decide.mjs` does, in plain language. It is here so a verdi
 
 The logic is deliberately small and pinned. A tool that argues against handing deterministic work to a model would not be much use if its own verdict drifted from run to run.
 
+The engine also carries platform lenses (`--platform agentforce`). A lens changes vocabulary only, never the classification: the same signals map to the same shape, and the shape is rendered in the platform's own primitives, Flow for the workflow, a prompt template for the single call, a topic with actions for the agent, subagents behind an orchestrator for multi-agent. Everything below describes the classification, which is lens-independent.
+
 ## The five shapes
 
 Ordered from cheapest and most predictable to most expensive and most nondeterministic. The whole bias is to sit as high on this list as the work allows.

@@ -1,6 +1,6 @@
 ---
 name: agent-or-workflow
-description: Decides the architecture for an AI feature before it is built, whether the work should be a deterministic workflow, a workflow with a model at the judgment points, a single model call, a single agent with tools, or multi-agent. Use when someone is scoping or designing a new AI use case, asking whether it needs an agent, reviewing a PRD, ticket, or spec for an agent, or pushing back on a design that reaches for an agent where a workflow would do. Reads the design input, extracts the deciding signals with evidence, runs a deterministic verdict, and writes an architecture decision record that biases toward the simplest thing that works.
+description: Decides the architecture for an AI feature before it is built, whether the work should be a deterministic workflow, a workflow with a model at the judgment points, a single model call, a single agent with tools, or multi-agent. Use when someone is scoping or designing a new AI use case, asking whether it needs an agent, reviewing a PRD, ticket, or spec for an agent, or pushing back on a design that reaches for an agent where a workflow would do. Also covers Salesforce Agentforce designs, deciding whether a use case should be a Flow, a prompt template, an Agentforce topic with actions, or multiple agents. Reads the design input, extracts the deciding signals with evidence, runs a deterministic verdict, and writes an architecture decision record that biases toward the simplest thing that works.
 license: MIT
 ---
 
@@ -54,6 +54,8 @@ node scripts/decide.mjs '{"q1":"...","q2":"...","q3":"...","q4":"...","q5":"..."
 ```
 
 Add `--md` for a ready-to-quote markdown block. Run `node scripts/decide.mjs --questions` to see every option id. The rules the engine applies are documented in `references/decision-logic.md` if you need to explain a verdict.
+
+If the design lives on Salesforce, add `--platform agentforce`. The classification never changes; the lens renders the same verdict in platform vocabulary: a Flow instead of a workflow, a prompt template instead of a single call, an Agentforce topic with actions instead of an agent with tools, multiple agents behind an orchestrator instead of multi-agent. Use it whenever the user is deciding between a Flow, a prompt template, and an agent.
 
 ### Step 4: Write the decision record
 

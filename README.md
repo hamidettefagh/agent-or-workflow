@@ -60,6 +60,24 @@ Seven signals resolve to one of five shapes, ordered from cheapest and most pred
 
 The full logic is in [`references/decision-logic.md`](references/decision-logic.md), and how to read each signal from a design is in [`references/signals.md`](references/signals.md).
 
+## The Agentforce lens
+
+The most common miss I see on Salesforce projects is work that should be a Flow shipped as an agent. Pass `--platform agentforce` and the same engine renders its verdict in platform vocabulary. The classification never changes; the lens is vocabulary, not a different call.
+
+```bash
+node scripts/decide.mjs --platform agentforce '{"q1":"act","q2":"fixed","q3":"few","q4":"undoable","q5":"records","q6":"async","q7":"guarded"}'
+```
+
+| General verdict | Agentforce lens |
+|---|---|
+| This is a workflow, not an agent | This is a Flow, not an agent |
+| A workflow with a model at the judgment points | A Flow with a prompt template at the judgment points |
+| A single model call | A prompt template, not an agent |
+| Single agent with tools | One Agentforce topic with a tight action set |
+| Multi-agent | Multiple agents behind an orchestrator |
+
+The knowledge, oversight, and risk guidance translate the same way: data libraries and retrievers for document grounding, scoped Flow or Apex query actions over the CRM instead of text-to-SOQL, confirmation before irreversible actions, and topics before subagents. The interactive tool has the same lens as a toggle.
+
 ## Why
 
 The failure this catches is quiet. Nobody ships a broken agent on purpose; they ship the wrong shape. A workflow that should have been three functions and a queue becomes a reasoning loop that costs more, breaks more, and cannot be tested. The fix is to make the call deliberately, on the evidence, before the code exists, and to bias hard toward the simplest thing that works. Reasoning is powerful and expensive. Spend it where it earns its seat.
