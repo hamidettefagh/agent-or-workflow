@@ -121,7 +121,7 @@ const LENSES = {
     knowledge: {
       workflow:
         "Look it up deterministically, by key or query. No vector search, and no model in the retrieval path.",
-      docs: "RAG over a vector store. Retrieval quality is your ceiling, so evaluate it on its own before you blame the model.",
+      docs: "RAG over a vector store for interactive answers, or agentic search where the agent can afford to explore. Either way, retrieval quality is your ceiling, so evaluate it on its own before you blame the model.",
       live: "Call tools or APIs at query time. RAG alone would hand back stale answers.",
       records:
         "Give it scoped, parameterized query tools over the system of record, not raw text-to-query and not a vector store. If you must generate queries, constrain them to a safe, read-only surface.",

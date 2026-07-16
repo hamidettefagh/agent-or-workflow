@@ -4,7 +4,17 @@ A Claude skill that decides the architecture for an AI feature before it is buil
 
 Most agents that struggle in production were the wrong shape from the start. The work was predictable and got handed to a model anyway, or a single call was grown into a multi-agent system nobody can test. This skill runs the decision that happens first: given a use case, what should you actually build, and where does reasoning genuinely earn its seat. It reads the design, extracts the deciding signals with evidence, and returns an architecture decision record that biases toward the simplest thing that works.
 
-It is the executable version of the tool at [hamidettefagh.com/agent-architecture](https://hamidettefagh.com/agent-architecture).
+It is the executable version of the tool at [hamidettefagh.com/agent-architecture](https://hamidettefagh.com/agent-architecture). The verdict looks like this:
+
+```
+**This is a workflow, not an agent**
+
+The steps are known and the rules are clear. Build this as deterministic
+automation. A model in this path buys cost, latency, and nondeterminism
+you did not need.
+
+You -> [ Deterministic workflow ] -> Systems of record
+```
 
 ## The two-gate method
 

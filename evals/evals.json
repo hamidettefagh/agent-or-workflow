@@ -1,0 +1,37 @@
+{
+  "skill_name": "agent-or-workflow",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Should our new support ticket summarizer be an agent or just a workflow? It takes a closed ticket, writes a two-line summary, and posts it to a Slack channel.",
+      "expected_output": "A decision record that reads the use case, extracts the seven signals with evidence or stated assumptions, runs scripts/decide.mjs for the verdict, and lands on a hybrid or single-call shape with the Slack posting kept deterministic.",
+      "assertions": [
+        "The verdict comes from running scripts/decide.mjs, not from the model reasoning to its own answer",
+        "The verdict names exactly one of the five shapes",
+        "Each of the seven signals is stated with evidence from the prompt or an explicit assumption",
+        "The record names the cheaper alternative not chosen",
+        "The posting step is not handed to the model"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "We are on Salesforce. A customer asked for an Agentforce use case: when a case is closed, send the customer a satisfaction survey link. Flow, prompt template, or agent topic?",
+      "expected_output": "The engine is run with --platform agentforce, and the verdict renders in platform vocabulary: this is a Flow, not an agent, because every step is a fixed rule.",
+      "assertions": [
+        "The script is invoked with --platform agentforce",
+        "The verdict says Flow rather than the general workflow vocabulary",
+        "The record does not recommend an agent topic for a fixed-rule automation"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Here is the whole spec: 'AI for our order system.' What architecture should we build?",
+      "expected_output": "The skill declines to force a verdict from a one-line feature name, names the missing load-bearing signals (at minimum how fixed the work is), and asks for them or states the assumptions it would need.",
+      "assertions": [
+        "No verdict is presented as final from this input alone",
+        "The response asks about or flags the fixedness signal (q2) as undetermined",
+        "No signals are invented and presented as evidence"
+      ]
+    }
+  ]
+}
