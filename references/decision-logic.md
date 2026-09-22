@@ -4,7 +4,9 @@ This is what `scripts/decide.mjs` does, in plain language. It is here so a verdi
 
 The logic is deliberately small and pinned. A tool that argues against handing deterministic work to a model would not be much use if its own verdict drifted from run to run.
 
-The engine also carries platform lenses (`--platform agentforce`). A lens changes vocabulary only, never the classification: the same signals map to the same shape, and the shape is rendered in the platform's own primitives, Flow for the workflow, a prompt template for the single call, a topic with actions for the agent, subagents behind an orchestrator for multi-agent. Everything below describes the classification, which is lens-independent.
+The engine also carries platform lenses (`--platform agentforce`). A lens changes vocabulary only, never the classification: the same signals map to the same shape, and the shape is rendered in the platform's own primitives, Flow for the workflow, a prompt template for the single call, a topic with actions for the agent, Multi-Agent Orchestration for multi-agent. Everything below describes the classification, which is lens-independent.
+
+The agentforce lens makes one further call inside the hybrid shape, because on that platform the answer depends on whether there is a conversation. Agent Script pins load-bearing decisions inside an agent, with availability gates and conditional instructions the model cannot override, while Flow and Apex stay the business logic underneath. So a conversational hybrid puts the determinism in Agent Script, and a backend hybrid has no agent to script at all and stays a Flow that calls a prompt template at the judgment point. The engine treats work as conversational when a person is waiting on the answer (`q6 = interactive`) or when the job is answering questions (`q1 = answer`). This affects wording and the diagram only; the shape is still hybrid either way.
 
 ## The five shapes
 

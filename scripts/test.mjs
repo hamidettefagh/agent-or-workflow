@@ -110,11 +110,44 @@ check(
 
 const afHybrid = run({ q1: "act", q2: "spine", q3: "few", q4: "undoable", q5: "records", q6: "interactive", q7: "guarded" }, "agentforce");
 check(
-  "agentforce hybrid is a Flow with a prompt template",
-  afHybrid.shape === "A Flow with a prompt template at the judgment points",
+  "agentforce conversational hybrid pins decisions in Agent Script",
+  afHybrid.shape === "Agent Script with the load-bearing decisions pinned",
   afHybrid.shape,
 );
-check("agentforce hybrid model line names the prompt template", /prompt template call at each judgment point/i.test(afHybrid.model), afHybrid.model);
+check(
+  "agentforce conversational hybrid draws Agent Script as the spine",
+  stages(afHybrid).join(" -> ") === "You -> Agent Script -> Prompt template -> Systems of record",
+  stages(afHybrid).join(" -> "),
+);
+
+// No conversation means no agent to script, so the determinism stays in Flow.
+const afHybridBackend = run(
+  { q1: "act", q2: "spine", q3: "few", q4: "undoable", q5: "records", q6: "async", q7: "guarded" },
+  "agentforce",
+);
+check(
+  "agentforce backend hybrid stays a Flow",
+  afHybridBackend.shape === "A Flow with a prompt template at the judgment points",
+  afHybridBackend.shape,
+);
+check(
+  "agentforce backend hybrid draws Flow as the spine",
+  stages(afHybridBackend).join(" -> ") === "You -> Flow -> Prompt template -> Systems of record",
+  stages(afHybridBackend).join(" -> "),
+);
+check(
+  "answering work is conversational even at high volume",
+  run(
+    { q1: "answer", q2: "spine", q3: "few", q4: "read", q5: "docs", q6: "highvolume", q7: "guarded" },
+    "agentforce",
+  ).shape === "Agent Script with the load-bearing decisions pinned",
+);
+check(
+  "the surface split never leaks into the general lens",
+  run({ q1: "act", q2: "spine", q3: "few", q4: "undoable", q5: "records", q6: "async", q7: "guarded" }).shape ===
+    "A workflow with a model at the judgment points",
+);
+check("agentforce hybrid model line stays surface-neutral", /Agent Script or Flow/.test(afHybrid.model), afHybrid.model);
 
 const afTools = run({ q1: "answer", q2: "open", q3: "one", q4: "read", q5: "docs", q6: "interactive", q7: "draft" }, "agentforce");
 check("agentforce agent is one topic", afTools.shape === "One Agentforce topic with a tight action set", afTools.shape);
@@ -125,7 +158,7 @@ check(
 );
 
 const afMulti = run({ q1: "act", q2: "open", q3: "many", q4: "undoable", q5: "records", q6: "async", q7: "guarded" }, "agentforce");
-check("agentforce multi is agents behind an orchestrator", afMulti.shape === "Multiple agents behind an orchestrator", afMulti.shape);
+check("agentforce multi names Multi-Agent Orchestration", afMulti.shape === "Multi-Agent Orchestration", afMulti.shape);
 check("agentforce multi defaults to topics first", /well-separated topics/.test(afMulti.shapeDetail), afMulti.shapeDetail);
 
 // Every general case must classify identically under the lens.

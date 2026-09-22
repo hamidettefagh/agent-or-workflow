@@ -81,12 +81,12 @@ node scripts/decide.mjs --platform agentforce '{"q1":"act","q2":"fixed","q3":"fe
 | General verdict | Agentforce lens |
 |---|---|
 | This is a workflow, not an agent | This is a Flow, not an agent |
-| A workflow with a model at the judgment points | A Flow with a prompt template at the judgment points |
+| A workflow with a model at the judgment points | Agent Script with the load-bearing decisions pinned, or a Flow with a prompt template when nothing is conversational |
 | A single model call | A prompt template, not an agent |
 | Single agent with tools | One Agentforce topic with a tight action set |
-| Multi-agent | Multiple agents behind an orchestrator |
+| Multi-agent | Multi-Agent Orchestration |
 
-The knowledge, oversight, and risk guidance translate the same way: data libraries and retrievers for document grounding, scoped Flow or Apex query actions over the CRM instead of text-to-SOQL, confirmation before irreversible actions, and topics before subagents. The interactive tool has the same lens as a toggle.
+The knowledge, oversight, and risk guidance translate the same way: data libraries and retrievers for document grounding, scoped Flow or Apex query actions over the CRM instead of text-to-SOQL, confirmation before irreversible actions, and topics before multiple agents. The hybrid row is the one place the lens looks at surface rather than shape: if a person is waiting on the answer, the determinism belongs inside the agent as Agent Script, and if nothing is conversational there is no agent to script. The interactive tool has the same lens as a toggle.
 
 ## Why
 

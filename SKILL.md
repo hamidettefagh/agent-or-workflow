@@ -55,7 +55,7 @@ node scripts/decide.mjs '{"q1":"...","q2":"...","q3":"...","q4":"...","q5":"..."
 
 Add `--md` for a ready-to-quote markdown block. Run `node scripts/decide.mjs --questions` to see every option id. The rules the engine applies are documented in `references/decision-logic.md` if you need to explain a verdict.
 
-If the design lives on Salesforce, add `--platform agentforce`. The classification never changes; the lens renders the same verdict in platform vocabulary: a Flow instead of a workflow, a prompt template instead of a single call, an Agentforce topic with actions instead of an agent with tools, multiple agents behind an orchestrator instead of multi-agent. Use it whenever the user is deciding between a Flow, a prompt template, and an agent.
+If the design lives on Salesforce, add `--platform agentforce`. The classification never changes; the lens renders the same verdict in platform vocabulary: a Flow instead of a workflow, a prompt template instead of a single call, an Agentforce topic with actions instead of an agent with tools, Multi-Agent Orchestration instead of multi-agent. The hybrid shape splits further on surface: conversational work pins its load-bearing decisions in Agent Script, while backend work has no agent to script and stays a Flow that calls a prompt template at the judgment points. Use it whenever the user is deciding between a Flow, a prompt template, and an agent.
 
 ### Step 4: Write the decision record
 
