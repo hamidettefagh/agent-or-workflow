@@ -160,6 +160,17 @@ check(
 const afMulti = run({ q1: "act", q2: "open", q3: "many", q4: "undoable", q5: "records", q6: "async", q7: "guarded" }, "agentforce");
 check("agentforce multi names Multi-Agent Orchestration", afMulti.shape === "Multi-Agent Orchestration", afMulti.shape);
 check("agentforce multi defaults to topics first", /well-separated topics/.test(afMulti.shapeDetail), afMulti.shapeDetail);
+// The diagram must speak the same vocabulary as the verdict that produced it.
+check(
+  "agentforce multi draws the primary and specialist agents it describes",
+  stages(afMulti).join(" -> ") === "You -> Primary agent -> Specialist agents -> Systems of record",
+  stages(afMulti).join(" -> "),
+);
+check(
+  "general multi keeps its own vocabulary",
+  stages(multi).join(" -> ") === "You -> Coordinator -> Specialists -> Systems of record",
+  stages(multi).join(" -> "),
+);
 
 // Every general case must classify identically under the lens.
 const parity = [
