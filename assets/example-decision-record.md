@@ -20,7 +20,7 @@ A major US airline's production customer service agent, deflecting call-center v
 |---|---|---|
 | What it mainly does | act | It does not just answer; it takes actions in the airline's systems across three request types. |
 | How fixed the work is | open | Customer requests are genuinely open-ended; the path cannot be drawn in advance. |
-| How many jobs | many | Loyalty, reservations, and back-office are distinct specialties that hand results between them. |
+| How many jobs | many | Answering policy questions and doing back-office work for a verified customer are distinct specialties that hand results between them. |
 | Reversibility | irreversible | Customer-facing actions in a regulated business; the worst action is high-impact and hard to walk back. |
 | Where knowledge lives | live | Answers must reflect the airline's current approved policy, which changes. Stale policy is the failure that nearly shut the program down in its first day. |
 | Latency and scale | highvolume | The point is to deflect call volume at scale, so cost per resolved case is a first-order constraint. |
@@ -40,11 +40,11 @@ A major US airline's production customer service agent, deflecting call-center v
 
 ## The alternative I am not choosing
 
-A single agent with tools. That is the cheaper default, and for a narrower scope it would be the right call. This one earns the coordinator because loyalty, reservations, and back-office are genuinely separable domains that each need their own governance, tools, and tests, and because the regulated data forces a hard trust boundary between them. The signal on the line is breadth: if the domains collapsed into one, this would drop back to a single agent with tools.
+A single agent with tools. That is the cheaper default, and for a narrower scope it would be the right call. This one earns a coordinator because back-office work needs a verified customer session and answering questions does not, so the line between them is a trust boundary, not just a topic boundary. The split stays as small as that boundary allows: questions stay inside the coordinator, and only back-office work goes to a delegate. The signal on the line is the boundary: if back-office work did not need its own verified session, this would drop back to a single agent with tools.
 
 ## Carry into the ship-time review
 
-- Grounding. Every answer must come from the current approved source, not the model's own knowledge. This is the failure that nearly ended the program, and it is a ship-gate dimension.
+- Grounding, enforced in the path rather than by instruction. Every answer, follow-ups included, must come from the current approved source. A skipped lookup is the failure that nearly ended the program, and it is a ship-gate dimension.
 - The trust boundary around the federally regulated data, and proof that nothing crosses it by accident.
 - The confirmation gate on irreversible actions, and an audit log a person can actually read.
 - Cost per resolved task, tracked from day one.
