@@ -12,7 +12,7 @@ A coordinator that delegates to focused specialists, each owning one domain and 
 
 ## The use case
 
-A major US airline's production customer service agent, deflecting call-center volume across loyalty, baggage, and back-office requests. It acts on the airline's systems on a customer's behalf, in a federally regulated business, at a scale of hundreds of thousands of automated actions a week. A wrong action reaches a real customer.
+A major US airline's production customer service agent, deflecting call-center volume across loyalty, reservations, and back-office requests. It acts on the airline's systems on a customer's behalf, in a federally regulated business, at a scale of more than 120,000 automated actions a week. A wrong action reaches a real customer.
 
 ## Signals
 
@@ -20,7 +20,7 @@ A major US airline's production customer service agent, deflecting call-center v
 |---|---|---|
 | What it mainly does | act | It does not just answer; it takes actions in the airline's systems across three request types. |
 | How fixed the work is | open | Customer requests are genuinely open-ended; the path cannot be drawn in advance. |
-| How many jobs | many | Loyalty, baggage, and back-office are distinct specialties that hand results between them. |
+| How many jobs | many | Loyalty, reservations, and back-office are distinct specialties that hand results between them. |
 | Reversibility | irreversible | Customer-facing actions in a regulated business; the worst action is high-impact and hard to walk back. |
 | Where knowledge lives | live | Answers must reflect the airline's current approved policy, which changes. Stale policy is the failure that nearly shut the program down in its first day. |
 | Latency and scale | highvolume | The point is to deflect call volume at scale, so cost per resolved case is a first-order constraint. |
@@ -40,7 +40,7 @@ A major US airline's production customer service agent, deflecting call-center v
 
 ## The alternative I am not choosing
 
-A single agent with tools. That is the cheaper default, and for a narrower scope it would be the right call. This one earns the coordinator because loyalty, baggage, and back-office are genuinely separable domains that each need their own governance, tools, and tests, and because the regulated data forces a hard trust boundary between them. The signal on the line is breadth: if the domains collapsed into one, this would drop back to a single agent with tools.
+A single agent with tools. That is the cheaper default, and for a narrower scope it would be the right call. This one earns the coordinator because loyalty, reservations, and back-office are genuinely separable domains that each need their own governance, tools, and tests, and because the regulated data forces a hard trust boundary between them. The signal on the line is breadth: if the domains collapsed into one, this would drop back to a single agent with tools.
 
 ## Carry into the ship-time review
 
